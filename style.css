@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #111; /* Fundo escuro destaca a cor */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column; /* Deixa na vertical */
+    gap: 20px;
+}
+
+.nav-links li a {
+    position: relative;
+    font-size: 3rem;
+    font-weight: 900;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: transparent; /* Esconde o preenchimento original */
+    -webkit-text-stroke: 1px #555; /* Cria o contorno cinza */
+    transition: 0.5s;
+}
+
+/* Criando a "camada" de cor que vai por cima */
+.nav-links li a::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0; /* Começa vazio */
+    height: 100%;
+    color: #00d2ff; /* Cor da animação */
+    -webkit-text-stroke: 1px #00d2ff;
+    border-right: 4px solid #00d2ff;
+    overflow: hidden;
+    transition: 0.5s ease-in-out;
+}
+
+/* Efeito Hover: preenche a palavra */
+.nav-links li a:hover::before {
+    width: 100%;
+}
+
+/* Classe de Ativo (via JS) */
+.nav-links li a.active::before {
+    width: 100%;
+    color: #ff0058; /* Cor diferente para o que foi clicado */
+    -webkit-text-stroke: 1px #ff0058;
+    border-right: none;
+}
